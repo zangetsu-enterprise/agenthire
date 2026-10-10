@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AgentHire — Find Vetted AI Agencies & Automation Consultants</title>
+<meta name="description" content="A curated directory of AI agencies, chatbot developers, AI agent builders and workflow automation consultants. Search by specialty, compare pricing, hire with confidence.">
+<style>
+:root{
+  --bg:#0b0f1a; --bg2:#111827; --card:#141c2e; --line:#243052;
+  --txt:#eef2ff; --muted:#9aa6c4; --acc:#7c8cf8; --acc2:#38e0c8; --gold:#f5b942;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif;background:var(--bg);color:var(--txt);line-height:1.55}
+a{color:var(--acc)}
+.wrap{max-width:1120px;margin:0 auto;padding:0 18px}
+/* nav */
+nav{position:sticky;top:0;z-index:50;background:rgba(11,15,26,.92);backdrop-filter:blur(8px);border-bottom:1px solid var(--line)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;padding:14px 0}
+.logo{font-weight:800;font-size:1.25rem;letter-spacing:-.02em;text-decoration:none;color:var(--txt)}
+.logo span{color:var(--acc2)}
+.nav-links{display:flex;gap:20px;align-items:center}
+.nav-links a{color:var(--muted);text-decoration:none;font-size:.95rem}
+.nav-links a:hover{color:var(--txt)}
+.btn{display:inline-block;background:linear-gradient(135deg,var(--acc),#5b6cf0);color:#fff;font-weight:700;padding:11px 22px;border-radius:12px;text-decoration:none;border:none;cursor:pointer;font-size:1rem}
+.btn:hover{filter:brightness(1.1)}
+.btn.ghost{background:transparent;border:1px solid var(--line);color:var(--txt)}
+/* hero */
+.hero{padding:64px 0 36px;text-align:center}
+.hero h1{font-size:clamp(2rem,5vw,3.2rem);letter-spacing:-.03em;line-height:1.12}
+.hero h1 em{font-style:normal;color:var(--acc2)}
+.hero p.sub{color:var(--muted);font-size:1.12rem;max-width:640px;margin:16px auto 0}
+.stats{display:flex;gap:28px;justify-content:center;margin-top:26px;flex-wrap:wrap}
+.stats div{text-align:center}
+.stats b{font-size:1.5rem;color:var(--acc2)}
+.stats span{display:block;color:var(--muted);font-size:.85rem}
+/* search */
+.controls{margin:30px 0 8px}
+.searchbox{position:relative;max-width:640px;margin:0 auto}
+.searchbox input{width:100%;padding:15px 18px 15px 48px;border-radius:14px;border:1px solid var(--line);background:var(--bg2);color:var(--txt);font-size:1.05rem}
+.searchbox input:focus{outline:2px solid var(--acc);border-color:var(--acc)}
+.searchbox .ico{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:1.2rem;opacity:.7}
+.chips{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+.chip{padding:9px 18px;border-radius:999px;border:1px solid var(--line);background:var(--bg2);color:var(--muted);cursor:pointer;font-size:.92rem;font-weight:600}
+.chip.active{background:var(--acc);border-color:var(--acc);color:#fff}
+/* cards */
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:18px;margin:28px 0 60px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:22px;display:flex;flex-direction:column;gap:10px;transition:transform .15s,border-color .15s}
+.card:hover{transform:translateY(-3px);border-color:var(--acc)}
+.card-top{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.card h3{font-size:1.15rem;letter-spacing:-.01em}
+.card h3 a{color:var(--txt);text-decoration:none}
+.card h3 a:hover{color:var(--acc2)}
+.loc{color:var(--muted);font-size:.82rem}
+.badge{font-size:.72rem;font-weight:800;text-transform:uppercase;letter-spacing:.06em;background:linear-gradient(135deg,var(--gold),#e08a2d);color:#1a1206;padding:4px 10px;border-radius:999px;white-space:nowrap}
+.tags{display:flex;gap:6px;flex-wrap:wrap}
+.tag{font-size:.75rem;background:#1b2540;border:1px solid var(--line);padding:3px 10px;border-radius:999px;color:var(--muted)}
+.price{font-size:.9rem;color:var(--acc2);font-weight:700}
+.desc{color:var(--muted);font-size:.93rem;flex:1}
+.card .row{margin-top:6px}
+.btn.sm{padding:9px 16px;font-size:.9rem;border-radius:10px}
+.empty{text-align:center;color:var(--muted);padding:60px 20px;grid-column:1/-1}
+/* sections */
+.section{background:var(--bg2);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:56px 0}
+.section h2{text-align:center;font-size:1.7rem;letter-spacing:-.02em;margin-bottom:8px}
+.section p.lead{text-align:center;color:var(--muted);max-width:620px;margin:0 auto 30px}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.step{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px}
+.step b{display:block;font-size:1.05rem;margin-bottom:6px}
+.step p{color:var(--muted);font-size:.92rem}
+/* cta band */
+.cta-band{padding:64px 0;text-align:center}
+.cta-band h2{font-size:1.9rem;letter-spacing:-.02em;margin-bottom:10px}
+.cta-band p{color:var(--muted);margin-bottom:24px}
+.cta-band .btns{display:flex;gap:12px;justify-content:center;flex-wrap:wrap}
+footer{border-top:1px solid var(--line);padding:34px 0;color:var(--muted);font-size:.88rem}
+footer .wrap{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+footer a{color:var(--muted)}
+.disclaimer{margin-top:14px;font-size:.78rem;opacity:.75;max-width:760px}
+@media(max-width:640px){.nav-links a.hide-m{display:none}.hero{padding:44px 0 24px}}
+</style>
+</head>
+<body>
+<nav>
+  <div class="wrap nav-in">
+    <a class="logo" href="index.html">Agent<span>Hire</span></a>
+    <div class="nav-links">
+      <a href="index.html">Directory</a>
+      <a href="pricing.html" class="hide-m">For Agencies</a>
+      <a href="list.html" class="btn sm">List your agency</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero wrap">
+  <h1>Find the right <em>AI agency</em> for your project</h1>
+  <p class="sub">A curated, AI-only directory of chatbot developers, AI agent builders, voice AI shops and workflow automation consultants. No noise — just agencies that actually ship.</p>
+  <div class="stats">
+    <div><b id="statCount">20</b><span>vetted agencies</span></div>
+    <div><b>4</b><span>specialties</span></div>
+    <div><b>100%</b><span>AI-focused</span></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="controls">
+    <div class="searchbox">
+      <span class="ico">🔎</span>
+      <input id="q" type="search" placeholder="Search agencies — try “n8n”, “voice”, “chatbot”, “RAG”…" autocomplete="off">
+    </div>
+    <div class="chips" id="chips">
+      <button class="chip active" data-f="all">All</button>
+      <button class="chip" data-f="chatbots">💬 Chatbots</button>
+      <button class="chip" data-f="ai-agents">🤖 AI Agents</button>
+      <button class="chip" data-f="automation">⚙️ Automation</button>
+      <button class="chip" data-f="voice">🎙️ Voice AI</button>
+    </div>
+  </div>
+  <div class="grid" id="grid"></div>
+</main>
+
+<section class="section">
+  <div class="wrap">
+    <h2>How hiring through AgentHire works</h2>
+    <p class="lead">Skip the RFP black hole. Find a specialist, compare real pricing bands, and reach out directly.</p>
+    <div class="steps">
+      <div class="step"><b>1. Search by specialty</b><p>Filter by chatbots, AI agents, automation or voice AI — every agency is hand-verified as AI-focused.</p></div>
+      <div class="step"><b>2. Compare pricing</b><p>We publish price ranges wherever agencies make them public, so you can shortlist within budget.</p></div>
+      <div class="step"><b>3. Contact directly</b><p>No middleman fees. Click through to the agency's own site and start a conversation.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-band wrap">
+  <h2>Run an AI agency?</h2>
+  <p>Get in front of buyers actively looking for AI help. Free basic listing — featured placement from $99/mo.</p>
+  <div class="btns">
+    <a href="list.html" class="btn">Get listed free</a>
+    <a href="pricing.html" class="btn ghost">See featured plans</a>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div>© 2026 AgentHire · Curated by Chachi · <a href="mailto:chachiafk@gmail.com">Contact</a></div>
+    <div><a href="pricing.html">For agencies</a> · <a href="list.html">List your agency</a></div>
+  </div>
+  <div class="wrap"><p class="disclaimer">Listings are editorial and based on publicly available information as of October 2026. Always verify scope, pricing and references directly with the agency before engaging. AgentHire is an independent directory and is not affiliated with the agencies listed.</p></div>
+</footer>
+
+<script>
+const AGENCIES=[
+{n:"MindInventory",u:"https://www.mindinventory.com/",loc:"USA · India · Netherlands · UK",cats:["chatbots","ai-agents"],tags:["Chatbots","AI Agents","Custom AI Dev"],price:"Quote on request",d:"Full-cycle software firm with a dedicated AI practice. Builds custom chatbots, AI agents and enterprise apps across healthcare, fintech and retail — balancing enterprise depth with startup-friendly agility. Founded 2011, 250+ specialists."},
+{n:"Master of Code Global",u:"https://www.masterofcode.com/",loc:"Redwood City, CA · Canada · EU",cats:["chatbots","voice"],tags:["Conversational AI","Voice Assistants"],price:"Min. project $25K–$50K (~$99/hr)",d:"Consulting-led conversational AI agency operating since 2004. Shipped 150+ chatbots and voice assistants for brands like T-Mobile and Burberry. ISO 27001 certified, strategy-first approach."},
+{n:"BotsCrew",u:"https://botscrew.com/",loc:"Remote",cats:["chatbots","voice"],tags:["Chatbots","Voice Interfaces"],price:"Quote on request",d:"Dedicated chatbot development agency crafting custom conversational experiences: multilingual bots, voice interfaces and white-label builds for resellers. Strong focus on UX and brand personality."},
+{n:"10Clouds",u:"https://10clouds.com/",loc:"Warsaw, Poland",cats:["chatbots","voice","ai-agents"],tags:["AI Agency","Chatbots & Voicebots","AI Agents"],price:"Quote on request",d:"Warsaw product studio (200+ people, since 2009) repositioned as a full AI agency: custom AI products, chatbots and voicebots, AI automation, plus a white-label AI platform. Rated 4.9 on Clutch."},
+{n:"LeewayHertz",u:"https://www.leewayhertz.com/",loc:"San Francisco, CA",cats:["ai-agents","chatbots"],tags:["Generative AI","RAG","AI Agents"],price:"Quote on request (enterprise)",d:"Enterprise AI firm (300+ engineers, since 2007), now part of The Hackett Group. Flagship ZBrain platform for RAG, AI agents and workflow automation. The heavyweight pick for complex enterprise builds."},
+{n:"Azumo",u:"https://azumo.com/",loc:"San Francisco, CA",cats:["ai-agents","chatbots"],tags:["Custom AI","RAG","AI Agents"],price:"Quote on request",d:"SOC 2-certified AI development company (since 2016, 100+ production AI projects). Ships custom RAG systems, NLP, computer vision and AI agents for startups through the Fortune 100."},
+{n:"Azilen Technologies",u:"https://www.azilen.com",loc:"USA",cats:["ai-agents","chatbots"],tags:["Enterprise AI","AI Agents"],price:"Quote on request",d:"Enterprise AI and product engineering firm with 400+ delivered projects across fintech, manufacturing and HR tech. Generative AI, custom AI agent systems, and flexible engagement models."},
+{n:"Vstorm",u:"https://vstorm.co/",loc:"Wrocław, Poland",cats:["ai-agents"],tags:["Agentic AI","RAG","Open Source"],price:"SMB-friendly, quote on request",d:"Boutique agentic AI engineering shop. Core contributor to the PydanticAI framework with 30+ AI agents shipped to production. No vendor lock-in — clients own the delivered code outright."},
+{n:"Neurons Lab",u:"https://www.neurons-lab.com/",loc:"London · Singapore",cats:["ai-agents"],tags:["Agentic AI","Fintech AI","Governance"],price:"Focused engagements $20K–$50K",d:"AWS Advanced Partner boutique focused on agentic AI for financial services: KYC automation, fraud detection, compliance reporting — with auditability and governance built in from day one. 100+ client engagements."},
+{n:"Markovate",u:"https://markovate.com/",loc:"Toronto, Canada",cats:["ai-agents"],tags:["Generative AI","AI Agents","LLMs"],price:"Quote on request",d:"Toronto product studio (~55 people, founded 2015) specializing in generative AI, LLM development, AI agents and document intelligence. Consulting-led: strategy and discovery before a line of code."},
+{n:"InData Labs",u:"https://indatalabs.com/",loc:"Cyprus · Singapore",cats:["ai-agents"],tags:["Data Science","ML","AI Dev"],price:"PoC/MVP $15K–$50K (published)",d:"Data science and AI engineering firm (80+ people) with its own R&D center. Ships PoCs and MVPs fast: predictive analytics, NLP, computer vision and MLOps. Published price bands make scoping easy."},
+{n:"DataRoot Labs",u:"https://datarootlabs.com/",loc:"Kyiv, Ukraine",cats:["ai-agents","automation"],tags:["AI R&D","Rapid MVP","NLP"],price:"Min. $10K · $50–$99/hr",d:"Full-cycle AI R&D center (founded 2016) known for fast MVP delivery — about 8 weeks on average. NLP, computer vision and AI consulting, with a free discovery session to start."},
+{n:"Opinosis Analytics",u:"https://www.opinosis-analytics.com",loc:"Sandy, Utah",cats:["ai-agents","chatbots"],tags:["AI Strategy","LLMs","NLP"],price:"Min. $10K–$25K (~$200/hr)",d:"Boutique AI strategy consulting firm led by Dr. Kavita Ganesan (20+ years in NLP/AI). Readiness assessments, AI roadmaps, executive training, and production-grade LLM and agent implementations."},
+{n:"WiserBrand",u:"https://wiserbrand.com/",loc:"Remote",cats:["automation","ai-agents"],tags:["Workflow Automation","AI Consulting"],price:"PoC $30K–$75K (published)",d:"Workflow automation consultancy that walks mid-market companies from readiness audit to a 6-week proof of concept and managed operations. Publishes its pricing upfront — rare in this space."},
+{n:"n8n Lab",u:"https://n8nlab.io/",loc:"USA coverage",cats:["automation","ai-agents"],tags:["n8n","Self-hosted","AI Agents"],price:"Retainers $800–$6,000/mo (published)",d:"Certified n8n partner building enterprise-grade workflow ecosystems: self-hosted n8n on AWS/Azure, multi-agent RAG systems, and SLA-backed support. Structured roadmapping before any build."},
+{n:"n8n Developers",u:"https://www.n8ndevelopers.com/",loc:"Remote",cats:["automation"],tags:["n8n","Workflows","CRM Sync"],price:"Quote on request",d:"Specialized n8n development team for scalable workflow automation: CRM data syncs, lead pipelines, e-commerce operations and secure self-hosted setups. Business-first, documentation-heavy delivery."},
+{n:"NeolithAI",u:"https://neolithai.agency/",loc:"Europe · UK",cats:["automation","ai-agents"],tags:["n8n","Make","AI Agents"],price:"Quote on request (boutique)",d:"One-engineer boutique building AI agents and workflow automations on n8n, Make and Zapier for small businesses across Europe and the UK. Small, fast, and refreshingly personal."},
+{n:"Eicra",u:"https://www.eicra.com/",loc:"Offshore",cats:["automation"],tags:["n8n","Make","Zapier"],price:"Published fixed prices",d:"Offshore workflow automation agency with a proof-first pitch: published fixed prices, pilots judged on your real cases, and everything built in accounts you own — you keep the credentials."},
+{n:"Leanware",u:"https://www.leanware.co/",loc:"Bogotá, Colombia (US hours)",cats:["automation","ai-agents"],tags:["RAG","AI Engineering","Nearshore"],price:"$25–$50/hr",d:"Nearshore AI engineering company working US hours. Fixed-scope AI services led by a two-week AI ROI assessment: RAG systems, AI agents, and milestone-billed builds instead of open-ended hours."},
+{n:"Azati",u:"https://azati.com/",loc:"Warsaw · USA",cats:["automation","ai-agents"],tags:["AI Consulting","AI MVPs","Legacy AI"],price:"~$30–$60/hr (published ranges)",d:"AI-augmented engineering company (300+ specialists, since 2002) for data-heavy enterprises. Ships AI MVPs in 6–8 weeks; fixed-price or time-and-materials, strong in regulated industries."}
+];
+const grid=document.getElementById('grid'),q=document.getElementById('q'),chips=document.getElementById('chips');
+let filt='all';
+const CATL={chatbots:'💬 Chatbots','ai-agents':'🤖 AI Agents',automation:'⚙️ Automation',voice:'🎙️ Voice AI'};
+function card(a){
+  const tags=a.tags.map(t=>'<span class="tag">'+t+'</span>').join('');
+  return '<article class="card"><div class="card-top"><div><h3><a href="'+a.u+'" target="_blank" rel="noopener">'+a.n+'</a></h3><div class="loc">📍 '+a.loc+'</div></div></div>'
+  +'<div class="tags">'+tags+'</div>'
+  +'<div class="price">💰 '+a.price+'</div>'
+  +'<p class="desc">'+a.d+'</p>'
+  +'<div class="row"><a class="btn sm" href="'+a.u+'" target="_blank" rel="noopener">Visit website →</a></div></article>';
+}
+function render(){
+  const term=q.value.trim().toLowerCase();
+  const list=AGENCIES.filter(a=>
+    (filt==='all'||a.cats.includes(filt)) &&
+    (!term || (a.n+' '+a.d+' '+a.tags.join(' ')+' '+a.loc).toLowerCase().includes(term))
+  );
+  grid.innerHTML=list.length?list.map(card).join(''):'<div class="empty">No agencies match — try a different search.<br><br><a class="btn ghost" href="list.html">Know one? Suggest it →</a></div>';
+  document.getElementById('statCount').textContent=AGENCIES.length;
+}
+chips.addEventListener('click',e=>{
+  const b=e.target.closest('.chip');if(!b)return;
+  chips.querySelectorAll('.chip').forEach(c=>c.classList.remove('active'));
+  b.classList.add('active');filt=b.dataset.f;render();
+});
+q.addEventListener('input',render);
+render();
+</script>
+</body>
+</html>
